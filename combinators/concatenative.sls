@@ -1,7 +1,7 @@
 
 (library (dharmalab combinators concatenative)
 
-  (export bi swap drop drop/2 nip)
+  (export bi bi* swap drop drop/2 nip uni)
 
   (import (rnrs))
 
