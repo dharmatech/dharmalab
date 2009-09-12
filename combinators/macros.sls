@@ -21,9 +21,11 @@
 
       ( (constant x args)
 
-        (lambda args
+        (let ((x* x))
 
-          x) )
+          (lambda args
+
+            x*)) )
 
       ( (constant x)
         (constant x (y)) )))
@@ -56,27 +58,56 @@
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  ;; (define-syntax ifte
+
+  ;;   (syntax-rules ()
+
+  ;;     ( (ifte f g h (x ...))
+
+  ;;       (lambda (x ...)
+  ;;         (if (f x ...)
+  ;;             (g x ...)
+  ;;             (h x ...))) )
+
+  ;;     ( (ifte f g h)
+
+  ;;       (ifte f g h (x)) )
+
+  ;;     ( (ifte f g h args)
+
+  ;;       (lambda args
+  ;;         (if (apply f args)
+  ;;             (apply g args)
+  ;;             (apply h args))) )
+
+  ;;     ))
+
   (define-syntax ifte
-
     (syntax-rules ()
-
       ( (ifte f g h (x ...))
 
-        (lambda (x ...)
-          (if (f x ...)
-              (g x ...)
-              (h x ...))) )
-
+        (let ((f* f)
+              (g* g)
+              (h* h))
+          
+          (lambda (x ...)
+            (if (f* x ...)
+                (g* x ...)
+                (h* x ...)))) )
+      
       ( (ifte f g h)
-
         (ifte f g h (x)) )
 
       ( (ifte f g h args)
 
-        (lambda args
-          (if (apply f args)
-              (apply g args)
-              (apply h args))) )))
+        (let ((f* f)
+              (g* g)
+              (h* h))
+
+          (lambda args
+            (if (apply f args)
+                (apply g args)
+                (apply h args)))) )))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
