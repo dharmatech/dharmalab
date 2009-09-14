@@ -6,10 +6,11 @@
   (import (rnrs))
 
   (define (binrec f g h i j)
-    (lambda (x)
+    (define (fun x)
       (if (f x)
           (g x)
-          (j ((binrec f g h i j) (h x))
-             ((binrec f g h i j) (i x))))))
+          (j (fun (h x))
+             (fun (i x)))))
+    fun)
 
   )

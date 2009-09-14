@@ -6,11 +6,14 @@
   (import (rnrs))
 
   (define (linrec f g h i)
-    (lambda (x)
+
+    (define (fun x)
       (if (f x)
           (g x)
           (i x
-             ((linrec f g h i) (h x))))))
+             (fun (h x)))))
+
+    fun)
 
   )
 
