@@ -1,7 +1,15 @@
 
 (library (dharmalab misc queue)
 
-  (export new-queue queue-empty? queue-insert queue-remove queue-length)
+  (export new-queue
+          queue-empty?
+          queue-insert
+          queue-remove
+          queue-length
+          queue-car
+          queue-cdr
+          queue-for-each-with-index
+          queue-tabulate)
 
   (import (rnrs)
           (srfi :41 streams))
@@ -54,6 +62,27 @@
           (P (queue-P q)))
       (f (stream-car L)
          (makeq (make-queue (stream-cdr L) R P)))))
+
+  (define (queue-car q)
+    (stream-car (queue-L q)))
+
+  (define (queue-cdr q)
+    (let ((L (queue-L q))
+          (R (queue-R q))
+          (P (queue-P q)))
+      (makeq (make-queue (stream-cdr L) R P))))
+
+  (define (queue-for-each-with-index f q)
+    (let loop ((i 0) (q q))
+      (if (not (queue-empty? q))
+          (begin (f i (queue-car q))
+                 (loop (+ i 1) (queue-cdr q))))))
+
+  (define (queue-tabulate f n)
+    (let loop ((i 0) (q (new-queue)))
+      (if (>= i n)
+          q
+          (loop (+ i 1) (queue-insert q (f i))))))
 
   )
 
