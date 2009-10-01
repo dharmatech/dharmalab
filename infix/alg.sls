@@ -6,8 +6,8 @@
   (import (rnrs)
           (rnrs r5rs)
           (rnrs mutable-strings)
-          (numero symbolic tokenizer)
-          (numero symbolic infix))
+          (dharmalab infix tokenizer)
+          (dharmalab infix infix))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
