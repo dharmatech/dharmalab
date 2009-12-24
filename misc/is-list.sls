@@ -16,7 +16,8 @@
 	 (with-syntax ( (name.ref      (gen-id #'name #'name ".ref"))
 			(name.length   (gen-id #'name #'name ".length"))
 			(name.map      (gen-id #'name #'name ".map"))
-			(name.for-each (gen-id #'name #'name ".for-each")) )
+			(name.for-each (gen-id #'name #'name ".for-each"))
+			(name.push!    (gen-id #'name #'name ".push!")) )
 
 	   #'(begin
 
@@ -26,6 +27,15 @@
 
 	       (define (name.map proc) (map proc name))
 
-	       (define (name.for-each proc) (for-each proc name))))))))
+	       (define (name.for-each proc) (for-each proc name))
+
+	       (define-syntax name.push!
+		 (syntax-rules ()
+		   ((name.push! val)
+		    (begin
+		      (set! name (cons val name))
+		      name))))
+	       
+	       ))))))
 
   )
