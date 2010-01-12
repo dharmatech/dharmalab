@@ -24,8 +24,9 @@
         (let ((token (lexer)))
 
           (cond ((eq? token #\()
-                 (cons (expr)
-                       (loop)))
+                 (let ((a (expr)))
+                   (let ((b (loop)))
+                     (cons a b))))
 
                 ((eq? token #\))
                  '())
