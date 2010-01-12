@@ -3,7 +3,9 @@
 
   (export is-vector)
 
-  (import (rnrs) (dharmalab misc gen-id))
+  (import (rnrs)
+          (for (dharmalab misc gen-id) (meta 1))
+          )
 
   ;; (define-syntax is-vector
 
