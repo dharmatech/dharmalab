@@ -7,6 +7,8 @@
           (dharmalab misc gen-id)
           (dharmalab records define-is-type-syntax)
           (dharmalab records define-import-type-syntax))
+
+  ;; Thanks to Derick Eddington 
   
   (define-syntax define-record-type++
     (lambda (stx)
