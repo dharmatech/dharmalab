@@ -5,7 +5,7 @@
 
   (import (rnrs)
           (srfi :64)
-          (dharmalab combinators inequality))
+          (dharmalab math basic))
 
   (define (test)
 
