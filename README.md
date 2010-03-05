@@ -66,6 +66,27 @@ exported from different libraries. This is a common interface to it.
 
     (time <expression>)
 
+# (dharmalab misc gen-id) #
+
+    (gen-id <identifier> <string-or-syntax> ...)
+
 # (dharmalab misc queue) #
 
 Purely functional queue.
+
+# (dharmalab misc is-list) #
+
+    > (import (dharmalab misc is-list))
+    > (define numbers '(1 2 3 4 5))
+    > (is-list numbers)
+    > (numbers.ref 0)
+    1
+    > (numbers.length)
+    5
+    > (numbers.map (lambda (x) (* x x)))
+    (1 4 9 16 25)
+
+# (dharmalab misc is-vector) #
+
+Similar to `is-list`.
+
