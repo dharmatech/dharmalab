@@ -70,6 +70,8 @@ exported from different libraries. This is a common interface to it.
 
     (gen-id <identifier> <string-or-syntax> ...)
 
+As seen in <i>The Scheme Programming Lanaugage</i>.
+
 # (dharmalab misc queue) #
 
 Purely functional queue.
