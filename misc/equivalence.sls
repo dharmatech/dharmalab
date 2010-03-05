@@ -5,7 +5,7 @@
 
  (import (rnrs) (dharmalab misc extended-curry))
   
-  (define equal-to (curry equal? a b))
+ (define equal-to (curry equal? a b))
 
  (define eq-to (curry equal? a b))
 
