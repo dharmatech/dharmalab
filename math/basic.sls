@@ -39,4 +39,6 @@
   (define less-than     (curry <  b a))
   (define less-than=    (curry <= b a))
 
+  (define =to (curry = a b))
+
   )
