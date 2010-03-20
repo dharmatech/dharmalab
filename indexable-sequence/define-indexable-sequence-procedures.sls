@@ -4,7 +4,7 @@
   (export define-indexable-sequence-procedures)
 
   (import (rnrs)
-          (dharmalab misc gen-id)
+          (for (dharmalab misc gen-id) (meta 1))
           (dharmalab indexable-sequence indexable-functors))
 
   (define-syntax define-indexable-sequence-procedures
