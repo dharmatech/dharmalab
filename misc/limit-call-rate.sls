@@ -4,7 +4,7 @@
   (export limit-call-rate)
 
   (import (rnrs)
-          (srfi :19 time))
+          (surfage s19 time))
 
   (define (current-time-in-nanoseconds)
     (let ((val (current-time)))

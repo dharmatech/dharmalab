@@ -12,7 +12,7 @@
           queue-tabulate)
 
   (import (rnrs)
-          (srfi :41 streams))
+          (surfage s41 streams))
 
   (define-record-type queue (fields L R P))
 

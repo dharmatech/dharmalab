@@ -4,8 +4,8 @@
   (export infix)
   
   (import (rnrs)
-          (only (srfi :1) circular-list list-index take drop)
-          (srfi :64))
+          (only (surfage s1 lists) circular-list list-index take drop)
+          (surfage s64 testing))
 
   ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

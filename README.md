@@ -1,4 +1,9 @@
 
+# Setup #
+
+    $ cd ~/scheme # Where '~/scheme' is the path to your Scheme libraries
+    $ git clone git://github.com/dharmatech/surfage.git
+
 # (dharmalab math basic) #
 
 Constant: `pi`
