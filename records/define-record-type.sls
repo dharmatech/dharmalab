@@ -4,7 +4,7 @@
   (export define-record-type++)
   
   (import (rnrs)
-          (dharmalab misc gen-id)
+          (for (dharmalab misc gen-id) (meta 1))
           (dharmalab records define-is-type-syntax)
           (dharmalab records define-import-type-syntax))
 

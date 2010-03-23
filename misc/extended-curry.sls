@@ -3,7 +3,8 @@
 
  (export curry)
 
- (import (rnrs) (dharmalab misc symbols))
+ (import (rnrs)
+         (for (dharmalab misc symbols) (meta 1)))
 
  (define-syntax curry-helper
 
