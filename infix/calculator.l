@@ -1,4 +1,4 @@
-blanks		[ \n\t]+
+blanks		[ \n]+
 decint          [0-9]+
 binint          #[bB][01]+
 octint          #[oO][0-7]+
