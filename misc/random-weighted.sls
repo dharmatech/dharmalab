@@ -1,58 +1,36 @@
 
 (library (dharmalab misc random-weighted)
 
- (export random-weighted random-weighted* call-random-weighted)
+  (export probabilities
+          layers
+          random-layer
+          random-weighted-selector)
 
- (import (rnrs)
-         (only (surfage s1 lists) iota take list-index)
-         (surfage s27 random-bits)
-         (dharmalab math basic))
+  (import (rnrs)
+          (surfage s27 random-bits)
+          (dharmalab math basic)
+          (dharmalab misc list))
 
- (define (probabilities weights)
-   (let ((sum (apply + weights)))
-     (map (lambda (w) (/ w sum))
-          weights)))
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
- (define (layers probabilities)
-   (let ((n (+ (length probabilities) 1)))
-     (map (lambda (l) (apply + l))
-          (cdr
-           (map (lambda (num)
-                  (take probabilities num))
-                (iota n))))))
+  (define (probabilities weights)
+    (map (divide-by (list-sum weights)) weights))
 
- (define (random-weighted weights)
-   (list-index (let ((n (random-integer 1000)))
-                 (lambda (elt)
-                   (> elt n)))
-               (map (lambda (elt) (* elt 1000))
-                    (layers (probabilities weights)))))
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
- (define (random-weighted* weights)
+  (define (layers probabilities)
+    (list-map-indices probabilities
+                      (lambda (i)
+                        (list-sum-head probabilities (+ i 1)))))
 
-   (let ((scaled-layers (map (multiply-by 1000)
-                             (layers (probabilities weights)))))
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-     (lambda ()
+  (define (random-layer layers)
+    (list-index layers (greater-than (random-real))))
 
-       (let ((n (random-integer 1000)))
+  ;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-         (list-index (greater-than n) scaled-layers)))))
-
- (define-syntax call-random-weighted
-   
-   (syntax-rules ()
-
-     ( (call-random-weighted (weight procedure) ...)
-
-       (let ((weights    (list   weight    ...))
-             (procedures (vector procedure ...)))
-
-         ((vector-ref procedures (random-weighted weights)))))))
-
- )
-
-         
-
-   
-        
+  (define (random-weighted-selector weights)
+    (let ((layers (layers (probabilities weights))))
+      (lambda ()
+        (random-layer layers)))))
