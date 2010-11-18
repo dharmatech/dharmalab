@@ -1,3 +1,5 @@
+#!r6rs
+
 (library (dharmalab infix tokenizer)
 
 (export lexer lexer-init)

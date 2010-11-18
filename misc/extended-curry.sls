@@ -1,4 +1,4 @@
-
+#!r6rs
 (library (dharmalab misc extended-curry)
 
  (export curry)
