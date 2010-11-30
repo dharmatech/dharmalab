@@ -1,3 +1,4 @@
+#!r6rs
 
 (library (dharmalab records define-record-type)
 
